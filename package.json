@@ -7,9 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thevu4496/server_nbchat1.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thevu4496/server_nbchat1/issues"
+  },
+  "homepage": "https://github.com/thevu4496/server_nbchat1#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
