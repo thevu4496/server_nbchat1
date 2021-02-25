@@ -6,6 +6,7 @@ const app = express();
 app.use(express.static('public')); //to access the files in public folder
 app.use(cors()); // it enables all cors requests
 app.use(fileUpload());
+var port = (process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 6969);
 // file upload api
 app.post('/uploads', (req, res) => {
     if (!req.files) {
@@ -47,6 +48,6 @@ app.get('/aa', (req,res) => {
     res.write(a);
     res.end();
 });
-app.listen(4500, () => {
+app.listen(port, () => {
     console.log('server is running at port 4500');
 })
