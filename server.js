@@ -64,6 +64,11 @@ app.get('/aa', (req,res) => {
             res.write(f[i]+"\n");
         }
     }
+    fs.readdir('./public/', (err, files) => {
+        files.forEach(file => {
+            res.write(file);
+        });
+      });
     res.end();
 });
 app.listen(port, () => {
