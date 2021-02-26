@@ -5,6 +5,7 @@ const fs = require('fs');
 const app = express();
 const { lstatSync, readdirSync } = require('fs')
 const { join } = require('path');
+const { isBuffer } = require('util');
 const isDirectory = source => lstatSync(source).isDirectory()
 const getDirectories = source =>
   readdirSync(source).map(name => join(source, name)).filter(isDirectory)
@@ -57,8 +58,14 @@ app.post('/uploads', (req, res) => {
     }
 })
 app.get('/aa', (req,res) => {
-    a = getDirectories('/');
-    res.write(a);
+    res.write(typeof __dirname);
+    res.write(__dirname);
+    let f = getDirectories(__dirname);
+    for(let i in f){
+        if(typeof f[i] == "string"){
+            res.write(f[i]);
+        }
+    }
     res.end();
 });
 app.listen(port, () => {
