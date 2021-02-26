@@ -8,7 +8,7 @@ const { join } = require('path');
 const { isBuffer } = require('util');
 const isDirectory = source => lstatSync(source).isDirectory()
 const getDirectories = source =>
-  readdirSync(source).map(name => join(source, name)).filter(isDirectory);
+  readdirSync(source).map(name => join(source, name)).filter(isDirectory)
 // middle ware
 app.use(express.static('public')); //to access the files in public folder
 app.use(cors()); // it enables all cors requests
@@ -58,14 +58,12 @@ app.post('/uploads', (req, res) => {
     }
 })
 app.get('/aa', (req,res) => {
-    let f = getDirectories('C:/Users/z/Desktop/server_nbchat1/public/');
-    fs.readdir('./public/', (err, files) => {
-        console.log(files);
-        console.log(err);
-        files.forEach(file => {
-            console.log(file);
-        });
-      });
+    let f = getDirectories(__dirname);
+    for(let i in f){
+        if(typeof f[i] == "string"){
+            res.write(f[i]+"\n");
+        }
+    }
     res.end();
 });
 app.listen(port, () => {
