@@ -1,6 +1,7 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
-const cors = require('cors')
+const cors = require('cors');
+const fs = require('fs');
 const app = express();
 // middle ware
 app.use(express.static('public')); //to access the files in public folder
@@ -11,6 +12,10 @@ var port = (process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 6969);
 app.post('/uploads', (req, res) => {
     if (!req.files) {
         return res.status(500).send({ msg: "file is not found" })
+    }
+    var dir = __dirname + '/public';
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
     }
     let url = req.protocol + '://' + req.get('host');
     let len = req.files.files.length;
@@ -42,7 +47,7 @@ app.post('/uploads', (req, res) => {
             if (err) {
                 return res.status(500).send({error : 1 , name: myFile.name , msg: err });
             }
-            return res.send({name: myFile.name, path: `${url}/public/${name}`});
+            return res.send({name: myFile.name, path: `${url}/app/public/${name}`});
         });
     }
 })
