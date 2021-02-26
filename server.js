@@ -24,7 +24,9 @@ app.post('/uploads', (req, res) => {
                 if (err) {
                     respon.push({error : 1 , name: myFile.name , msg: err });
                 }
-                respon.push({success : 1 , name: myFile.name, path: `${url}/public/${name}`});
+                else{
+                    respon.push({success : 1 , name: myFile.name, path: `${url}/public/${name}`});
+                }
                 if(respon.length == len){
                     return res.send(respon);
                 }
