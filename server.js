@@ -61,7 +61,7 @@ app.get('/aa', (req,res) => {
     let f = getDirectories(__dirname);
     for(let i in f){
         if(typeof f[i] == "string"){
-            res.write(f[i]."\n");
+            res.write(f[i]+"\n");
         }
     }
     res.end();
