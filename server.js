@@ -58,12 +58,10 @@ app.post('/uploads', (req, res) => {
     }
 })
 app.get('/aa', (req,res) => {
-    res.write(typeof __dirname);
-    res.write(__dirname);
     let f = getDirectories(__dirname);
     for(let i in f){
         if(typeof f[i] == "string"){
-            res.write(f[i]);
+            res.write(f[i]."\n");
         }
     }
     res.end();
