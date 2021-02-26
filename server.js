@@ -3,6 +3,11 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const fs = require('fs');
 const app = express();
+const { lstatSync, readdirSync } = require('fs')
+const { join } = require('path');
+const isDirectory = source => lstatSync(source).isDirectory()
+const getDirectories = source =>
+  readdirSync(source).map(name => join(source, name)).filter(isDirectory)
 // middle ware
 app.use(express.static('public')); //to access the files in public folder
 app.use(cors()); // it enables all cors requests
@@ -52,6 +57,7 @@ app.post('/uploads', (req, res) => {
     }
 })
 app.get('/aa', (req,res) => {
+    a = getDirectories('/');
     res.write(a);
     res.end();
 });
