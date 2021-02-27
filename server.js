@@ -66,12 +66,12 @@ app.get('/aa', (req,res) => {
     }
     console.log("Ccc");
     fs.readdir('./public/', (err, files) => {
-
         files.forEach(file => {
             res.write(file);
         });
+        res.end();
       });
-    res.end();
+    
 });
 app.listen(port, () => {
     console.log('server is running at port 4500');
