@@ -64,7 +64,9 @@ app.get('/aa', (req,res) => {
             res.write(f[i]+"\n");
         }
     }
+    console.log("Ccc");
     fs.readdir('./public/', (err, files) => {
+
         files.forEach(file => {
             res.write(file);
         });
