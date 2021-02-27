@@ -37,7 +37,7 @@ app.post('/uploads', (req, res) => {
                     respon.push({error : 1 , name: myFile.name , msg: err });
                 }
                 else{
-                    respon.push({success : 1 , name: myFile.name, path: `${url}/public/${name}`});
+                    respon.push({success : 1 , name: myFile.name, path: `${url}/app/public/${name}`});
                 }
                 if(respon.length == len){
                     return res.send(respon);
@@ -74,7 +74,7 @@ app.get('/aa', (req,res) => {
       });
     
 });
-app.get('/public/:id', (req,res) => {
+app.get('/app/public/:id', (req,res) => {
     let im = req.params.id;
     res.sendFile(path.join(__dirname, "./public/" + im));
 });
