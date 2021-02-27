@@ -3,6 +3,7 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const fs = require('fs');
 const app = express();
+const http = require("http");
 const { lstatSync, readdirSync } = require('fs')
 const { join } = require('path');
 const { isBuffer } = require('util');
@@ -13,6 +14,7 @@ const getDirectories = source =>
 app.use(express.static('public')); //to access the files in public folder
 app.use(cors()); // it enables all cors requests
 app.use(fileUpload());
+const httpServer = http.createServer(app);
 var port = (process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 6969);
 // file upload api
 app.post('/uploads', (req, res) => {
@@ -73,6 +75,6 @@ app.get('/aa', (req,res) => {
       });
     
 });
-app.listen(port, () => {
+httpServer.listen(port, () => {
     console.log('server is running at port 4500');
 })
